@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5fa4ff10-4fcd-4cdb-9b50-8fbcf8aff5b9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/controlers/NewsController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/Db.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/routes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/AboutController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/NewsController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/RulesController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/News.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/Router.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controlers/NewsController.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +48,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1629706229346</updated>
-      <workItem from="1629706232178" duration="1720000" />
+      <workItem from="1629706232178" duration="17431000" />
     </task>
     <servers />
   </component>
