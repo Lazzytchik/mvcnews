@@ -6,7 +6,7 @@ class News
 
     const SHOW_BY_DEFAULT = 5;
 
-    private static function toArray($query): array
+    private static function newsToArray($query): array
     {
         $array = array();
 
@@ -19,6 +19,20 @@ class News
             $array[$i]['post_date'] = $row['post_date'];
             $array[$i]['group_name'] = $row['group_name'];
             $array[$i]['cat_name'] = $row['cat_name'];
+            $i++;
+        }
+
+        return $array;
+    }
+
+    private static function groupsToArray($query){
+
+        $array = array();
+
+        $i = 0;
+        while ($row = $query->fetch()){
+            $array[$i]['name'] = $row['name'];
+            $array[$i]['ru_name'] = $row['ru_name'];
             $i++;
         }
 
@@ -40,7 +54,7 @@ class News
         $query->bindValue('offset', $offset, PDO::PARAM_INT);
         $query->execute();
 
-        return self::toArray($query);
+        return self::newsToArray($query);
     }
 
     //  Функция, которая возвращает результат запроса новостей по группе
@@ -59,7 +73,7 @@ class News
         $query->bindValue('group', $group, PDO::PARAM_STR);
         $query->execute();
 
-        return self::toArray($query);
+        return self::newsToArray($query);
     }
 
     //  Функция, которая возвращает результат запроса новостей по группе и категории
@@ -79,8 +93,31 @@ class News
         $query->bindValue('category', $category, PDO::PARAM_STR);
         $query->execute();
 
-        return self::toArray($query);
+        return self::newsToArray($query);
     }
 
+
+    //  Функция, которая возвращает результат запроса групп новостей
+    public static function getGroups(){
+
+        $db = Db::getConnection();
+
+        $groups = "SELECT * FROM `groups`";
+        $query = $db->query($groups);
+
+        return self::groupsToArray($query);
+
+    }
+
+    //  Функция, которая возвращает результат запроса категорий новостей
+    public static function getCategories(){
+
+        $db = Db::getConnection();
+
+        $cat = "SELECT * FROM categories ORDER by name";
+        $query = $db->query($cat);
+
+        return self::groupsToArray($query);
+    }
 
 }
