@@ -2,4 +2,5 @@ AddDefaultCharset utf-8
 
 RewriteEngine on
 RewriteBase /
+RewriteCond %{REQUEST_URI} !^/(template|img)
 RewriteRule ^(.*)$ index.php

@@ -16,8 +16,8 @@
                 ?>
             </ul>
         </li>
-        <li><a href="../../../index.php">О нас</a></li>
-        <li><a href="../../../index.php">Правила</a></li>
+        <li><a href="/about">О нас</a></li>
+        <li><a href="/rules">Правила</a></li>
     </ul>
     <?php
 

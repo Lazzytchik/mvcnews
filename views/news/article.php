@@ -14,9 +14,7 @@
 
 require ROOT . '/views/news/menu/mainMenu.php';
 
-NewsController::showNews($newsList);
-
-require 'pagination.php';
+NewsController::showNews($article);
 
 ?>
 

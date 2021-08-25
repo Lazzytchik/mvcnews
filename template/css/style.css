@@ -12,6 +12,11 @@ div.newspaper{
     margin: auto;
 }
 
+.newspaper__image{
+    max-width: 580px;
+    margin: 10px;
+}
+
 div.pagination{
     max-width: 600px;
     margin: auto;

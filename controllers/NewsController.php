@@ -11,24 +11,53 @@ class NewsController
         $groups = News::getGroups();
         $categories = News::getCategories();
         $newsList = News::getNews($page);
+        $count = News::getNewsCount();
 
-        //$this->viewNews($groups);
         require_once ROOT.'/views/news/index.php';
 
     }
 
     public function actionGroup($group, $page = 1){
 
+        $groups = News::getGroups();
+        $categories = News::getCategories();
+        $newsList = News::getGroupedNews($group, $page);
+        $count = News::getGNewsCount($group);
+
+        require_once ROOT.'/views/news/index.php';
     }
 
     public function actionCategory($group, $category, $page = 1){
 
+        $groups = News::getGroups();
+        $categories = News::getCategories();
+        $newsList = News::getGCNews($group, $category, $page);
+        $count = News::getGCNewsCount($group, $category);
+
+        require_once ROOT.'/views/news/index.php';
     }
 
-    private function viewGroups($array){
-        foreach ($array as $group){
-            echo $group['name'].'<br>';
+    public function actionArticle($id){
+
+        $groups = News::getGroups();
+        $categories = News::getCategories();
+        $article = News::getArticle($id);
+
+        require_once ROOT.'/views/news/article.php';
+
+    }
+
+    public static function showNews($newsList){
+        if (!empty($newsList)){
+            foreach ($newsList as $article){
+                $newsCatList = News::getNewsCategories($article['id']);
+
+                require ROOT.'/views/news/newsForm.php';
+            }
+        } else{
+            // Message for no articles
         }
+
     }
 
 }
