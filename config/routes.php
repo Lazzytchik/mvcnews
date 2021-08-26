@@ -20,8 +20,23 @@ return array(
     'news/page-([0-9]+)$' => 'news/index/$1',
     'news$' => 'news/index',
 
+    /* -- ABOUT CONTROLLER -- */
 
     'about$' => 'about/index',
 
-    'rules$' => 'rules/index'
+    /* -- RULES CONTROLLER -- */
+
+    'rules$' => 'rules/index',
+
+    /* -- AUTH CONTROLLER -- */
+
+    //  Login action
+    'auth/login$' => 'auth/login',
+
+    //  Logout action
+    'auth/logout$' => 'auth/logout',
+
+    /* -- MAIN CONTROLLER -- */
+
+    '$' => 'main/index'
 );

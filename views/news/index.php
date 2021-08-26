@@ -12,7 +12,7 @@
 
 <?php
 
-require ROOT . '/views/news/menu/mainMenu.php';
+require ROOT . '/views/menu/mainMenu.php';
 
 NewsController::showNews($newsList);
 

@@ -8,8 +8,14 @@ class NewsController
 {
     public function actionIndex($page = 1){
 
+        session_start();
+
         $groups = News::getGroups();
         $categories = News::getCategories();
+
+        $categoriesPreview = News::getNewsPreview();
+        $groupsPreview = News::getGroupsPreview();
+
         $newsList = News::getNews($page);
         $count = News::getNewsCount();
 
@@ -19,8 +25,14 @@ class NewsController
 
     public function actionGroup($group, $page = 1){
 
+        session_start();
+
         $groups = News::getGroups();
         $categories = News::getCategories();
+
+        $categoriesPreview = News::getNewsPreview();
+        $groupsPreview = News::getGroupsPreview();
+
         $newsList = News::getGroupedNews($group, $page);
         $count = News::getGNewsCount($group);
 
@@ -29,8 +41,14 @@ class NewsController
 
     public function actionCategory($group, $category, $page = 1){
 
+        session_start();
+
         $groups = News::getGroups();
         $categories = News::getCategories();
+
+        $categoriesPreview = News::getNewsPreview();
+        $groupsPreview = News::getGroupsPreview();
+
         $newsList = News::getGCNews($group, $category, $page);
         $count = News::getGCNewsCount($group, $category);
 
@@ -39,8 +57,14 @@ class NewsController
 
     public function actionArticle($id){
 
+        session_start();
+
         $groups = News::getGroups();
         $categories = News::getCategories();
+
+        $categoriesPreview = News::getNewsPreview();
+        $groupsPreview = News::getGroupsPreview();
+
         $article = News::getArticle($id);
 
         require_once ROOT.'/views/news/article.php';

@@ -6,7 +6,7 @@ class News
 
     const SHOW_BY_DEFAULT = 2;
 
-    //
+    //  Конверитиует результат запроса в список новостей. Непубличная функция.
     private static function newsToArray($query): array
     {
         $array = array();
@@ -28,6 +28,7 @@ class News
         return $array;
     }
 
+    //  Конверитиует результат запроса в список групп или категорий. Непубличная функция.
     private static function groupsToArray($query): array
     {
 
@@ -37,13 +38,12 @@ class News
 
         if ($query){
             while ($row = $query->fetch()){
-                $array[$i]['name'] = $row['name'];
-                $array[$i]['ru_name'] = $row['ru_name'];
+                $array[$row['name']]['name'] = $row['name'];
+                $array[$row['name']]['ru_name'] = $row['ru_name'];
+                $array[$row['name']]['description'] = $row['description'];
                 $i++;
             }
         }
-
-
         return $array;
     }
 
@@ -127,12 +127,13 @@ class News
 
         $db = Db::getConnection();
 
-        $cat = "SELECT * FROM categories ORDER by name";
+        $cat = "SELECT * FROM categories";
         $query = $db->query($cat);
 
         return self::groupsToArray($query);
     }
 
+    //  Функция возваращет конкретную новость по id.
     public static function getArticle($id){
 
         $db = Db::getConnection();
@@ -145,6 +146,7 @@ class News
         return self::newsToArray($query);
     }
 
+    //  Функция возваращет список категорий с их английским и русским названием.
     public static function getNewsCategories($newsId): array
     {
 
@@ -161,6 +163,7 @@ class News
         return self::groupsToArray($query);
     }
 
+    //  Функция возваращет количество новостей в базе.
     public static function getNewsCount(){
 
         $db = Db::getConnection();
@@ -173,6 +176,7 @@ class News
         return floor($query->fetch()['amount'] / self::SHOW_BY_DEFAULT);
     }
 
+    //  Функция возваращет количество новостей в конкретной группе.
     public static function getGNewsCount($group){
 
         $db = Db::getConnection();
@@ -188,6 +192,7 @@ class News
         return floor($query->fetch()['amount'] / self::SHOW_BY_DEFAULT);
     }
 
+    //  Функция возваращет количество новостей в конкретной группе и категории.
     public static function getGCNewsCount($group, $category){
 
         $db = Db::getConnection();
@@ -205,6 +210,7 @@ class News
         return floor($query->fetch()['amount'] / self::SHOW_BY_DEFAULT);
     }
 
+    //  Функция возвращает ассоциативный массив вида array['название_группы']['название_категории'] => количество_новостей
     public static function getNewsPreview(){
 
         $db = Db::getConnection();
@@ -215,6 +221,49 @@ class News
 
         $query = $db->prepare($news);
         $query->execute();
+
+        $array = array();
+
+        if ($query){
+            while ($row = $query->fetch()){
+                $array[$row['group_name']][$row['cat_name']] = $row['amount'];
+            }
+        }
+
+        return $array;
+
+    }
+
+    public static function divideGroups($preview): array
+    {
+        $result = array();
+        foreach ($preview as $group => $array){
+            $result[$group] = array_sum($array);
+        }
+
+        return $result;
+    }
+
+    //  Функция возвращает ассоциативный массив вида array['название_группы'] => количество_новостей_в_этой_группе
+    public static function getGroupsPreview(){
+
+        $db = Db::getConnection();
+
+        $news = "SELECT group_name, Count(id) as amount FROM news
+                 GROUP BY group_name";
+
+        $query = $db->prepare($news);
+        $query->execute();
+
+        $array = array();
+
+        if ($query){
+            while ($row = $query->fetch()){
+                $array[$row['group_name']] = $row['amount'];
+            }
+        }
+
+        return $array;
 
     }
 

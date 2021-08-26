@@ -19,11 +19,11 @@ class Router
     }
 
     public function  run(){
-        echo "Router run!"."<br>";
+        //echo "Router run!"."<br>";
 
         $uri = $this->getURI();
 
-        echo "URI is:  ".$uri.'<br>';
+        //echo "URI is:  ".$uri.'<br>';
 
         foreach ($this->routes as $uriPattern => $path){
             if (preg_match("~$uriPattern~", $uri)){
@@ -44,12 +44,11 @@ class Router
                     include_once $controllerFile;
                 }
 
-                echo $controllerName.'<br>';
-                echo $actionName.'<br>';
+                //echo $controllerName.'<br>';
+                //echo $actionName.'<br>';
 
                 $controllerObject = new $controllerName;
                 $result = call_user_func_array(array($controllerObject, $actionName), $parameters);
-
 
                 if ($result != null){
                     break;
