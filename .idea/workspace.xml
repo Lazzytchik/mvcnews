@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5fa4ff10-4fcd-4cdb-9b50-8fbcf8aff5b9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/controllers/MainController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/Auth.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/about/about.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/menu/authMenu/loggedInForm.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/rules/rules.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/Router.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/AboutController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AboutController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/NewsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/NewsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/RulesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/RulesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/News.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/News.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/news/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/news/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/news/menu/authMenu.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/menu/authMenu/authMenu.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/news/menu/mainMenu.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/menu/mainMenu.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/news/menu/subMenu.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/menu/subMenu.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +57,7 @@
       <workItem from="1629787795349" duration="13202000" />
       <workItem from="1629874440265" duration="17767000" />
       <workItem from="1629957511997" duration="11582000" />
-      <workItem from="1629978916138" duration="4578000" />
+      <workItem from="1629978916138" duration="4620000" />
     </task>
     <servers />
   </component>
