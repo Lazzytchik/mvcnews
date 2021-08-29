@@ -2,6 +2,7 @@
 
 
 require_once ROOT.'/models/News.php';
+require_once ROOT.'/models/Auth.php';
 require_once ROOT.'/components/Db.php';
 
 class NewsController
@@ -66,6 +67,8 @@ class NewsController
         $groupsPreview = News::getGroupsPreview();
 
         $article = News::getArticle($id);
+
+        Auth::setView($id, $_SESSION['username']);
 
         require_once ROOT.'/views/news/article.php';
 

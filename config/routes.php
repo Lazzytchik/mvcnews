@@ -38,5 +38,5 @@ return array(
 
     /* -- MAIN CONTROLLER -- */
 
-    '$' => 'main/index'
+    '^$' => 'main/index'
 );

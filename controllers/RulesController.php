@@ -2,6 +2,7 @@
 
 
 require_once ROOT.'/models/News.php';
+require_once ROOT.'/models/Auth.php';
 require_once ROOT.'/components/Db.php';
 
 class RulesController

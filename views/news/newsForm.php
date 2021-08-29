@@ -15,5 +15,6 @@
 
     </div>
     <p class="date"><?php echo $article['post_date'] ?></p>
+    <p class="date"><?php echo $article['views'].' просмотров' ?></p>
     <p><?php echo $article['text'] ?></p>
 </div>

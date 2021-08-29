@@ -21,6 +21,7 @@ class News
                 $array[$i]['post_date'] = $row['post_date'];
                 $array[$i]['group_name'] = $row['group_name'];
                 $array[$i]['image'] = $row['image'];
+                $array[$i]['views'] = $row['views'];
                 $i++;
             }
         }
@@ -54,7 +55,11 @@ class News
 
         $db = Db::getConnection();
 
-        $news = "SELECT * FROM news ORDER by post_date DESC LIMIT :limit OFFSET :offset";
+        $news = "SELECT news.*, IFNull(uv.views, 0) as views FROM news
+                 LEFT JOIN (SELECT news_id, Count(username) as views FROM user_views
+                            GROUP BY news_id) uv on id = uv.news_id
+                 ORDER by post_date DESC 
+                 LIMIT :limit OFFSET :offset";
 
         $offset = ($page - 1)*self::SHOW_BY_DEFAULT;
 
@@ -73,7 +78,12 @@ class News
 
         $db = Db::getConnection();
 
-        $news = "SELECT * FROM news WHERE group_name = :group ORDER by post_date DESC LIMIT :limit OFFSET :start";
+        $news = "SELECT news.* , IFNull(uv.views, 0) as views FROM news
+                 LEFT JOIN (SELECT news_id, Count(username) as views FROM user_views
+                            GROUP BY news_id) uv on id = uv.news_id
+                 WHERE group_name = :group
+                 ORDER by post_date DESC
+                 LIMIT :limit OFFSET :start";
 
         $offset = ($page - 1)*self::SHOW_BY_DEFAULT;
 
@@ -93,7 +103,12 @@ class News
 
         $db = Db::getConnection();
 
-        $news = "SELECT * FROM news JOIN categorized_news cn on news.id = cn.news_id WHERE group_name = :group and cat_name = :category ORDER by post_date DESC LIMIT :limit OFFSET :start";
+        $news = "SELECT news.*, IFNull(uv.views, 0) as views FROM news
+                 JOIN categorized_news cn on news.id = cn.news_id
+                 LEFT JOIN (SELECT news_id, Count(username) as views FROM user_views
+                            GROUP BY news_id) uv on id = uv.news_id
+                 WHERE group_name = :group
+                 and cat_name = :category ORDER by post_date DESC LIMIT :limit OFFSET :start";
 
         $offset = ($page - 1)*self::SHOW_BY_DEFAULT;
 
@@ -211,7 +226,8 @@ class News
     }
 
     //  Функция возвращает ассоциативный массив вида array['название_группы']['название_категории'] => количество_новостей
-    public static function getNewsPreview(){
+    public static function getNewsPreview(): array
+    {
 
         $db = Db::getConnection();
 
@@ -234,18 +250,9 @@ class News
 
     }
 
-    public static function divideGroups($preview): array
-    {
-        $result = array();
-        foreach ($preview as $group => $array){
-            $result[$group] = array_sum($array);
-        }
-
-        return $result;
-    }
-
     //  Функция возвращает ассоциативный массив вида array['название_группы'] => количество_новостей_в_этой_группе
-    public static function getGroupsPreview(){
+    public static function getGroupsPreview(): array
+    {
 
         $db = Db::getConnection();
 
@@ -264,6 +271,23 @@ class News
         }
 
         return $array;
+
+    }
+
+    public static function getViews($newsId) : int
+    {
+
+        $db = Db::getConnection();
+
+        $news = "SELECT Count(username) as views FROM user_views
+                 WHERE news_id = :newsId
+                 GROUP BY group_name";
+
+        $query = $db->prepare($news);
+        $query->bindValue('newsId', $newsId, PDO::PARAM_INT);
+        $query->execute();
+
+        return $query->fetch()['views'];
 
     }
 
